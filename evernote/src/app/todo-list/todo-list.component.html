@@ -6,9 +6,10 @@
   @for (todo of todos; track todo) {
     <a class="item" (click)="removeTodoInList(todo.id)">
       <input type="checkbox" id="todo" name="Todo">
-      <label class="strikethrough" for="todo"> {{todo.title}}</label>
+      <label class="strikethrough" for="todo"> {{todo.title}}</label><br>
+      Description: {{todo.description}}<br>
+      Fälligkeitsdatum: {{todo.due_date}}</a>
 
-    </a>
   }
   <a class="ui tiny yellow labeled icon button" [routerLink]="'../form-todo/'">
   <i class="edit icon"></i>Todo erstellen

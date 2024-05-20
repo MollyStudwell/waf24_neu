@@ -44,6 +44,11 @@ export class EvernoteService {
       .pipe(retry(3)).pipe(catchError(this.errorHandler))
   }
 
+  getUser(): Observable<Array<User>>{
+    return this.http.get<User>(`${this.api}/users`)
+      .pipe(retry(3)).pipe(catchError(this.errorHandler));
+  }
+
 
   removeNotelist(id:number):Observable<any>{
     return this.http.delete<Notelist>(`${this.api}/notelists/${id}`)

@@ -85,7 +85,9 @@ export class NotelistFormComponent implements OnInit{
     const userArray = this.notelistForm.get('user') as FormArray;
     user.forEach(user => {
       userArray.push(this.fb.group({
-        firstname: [user.firstname, Validators.required]
+        firstname: [user.firstname, Validators.required],
+        lastname: [user.lastname, Validators.required],
+        email: [user.email, Validators.required],
       }));
     });
   }
@@ -103,8 +105,7 @@ export class NotelistFormComponent implements OnInit{
     });
   }
 
-  deleteUser(index: number): void {
-    // Using type assertion to treat the control as FormGroup
+    deleteUser(index: number): void {
     const userGroup = this.user.at(index) as FormGroup;
     this.user.removeAt(index);
   }
@@ -142,6 +143,7 @@ export class NotelistFormComponent implements OnInit{
     console.log('selecteduser',user);
 
   }
+  
 }
 
 

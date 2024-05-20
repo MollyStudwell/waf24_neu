@@ -23,7 +23,22 @@
           </div>
       </div>
       @if(notelistForm.get('visibility')?.value){
-        <bs-share-to-user (selected)="selected($event)"></bs-share-to-user>
+        <div class="column">
+          <h3>Teilen mit...</h3>
+          <bs-share-to-user (selected)="selected($event)"></bs-share-to-user>
+          <h5>Dieses Notizbuch ist mit folgenden Personen geteilt:</h5>
+          @for (user of notelist.user; track user){
+          <div class="ui middle aligned selected divided list">
+            <ul>
+              <li>{{user.email}} |
+            {{user.firstname}} {{user.lastname}}</li></ul>
+          </div>
+          }
+          <div *ngFor="let userControl of user.controls; let i = index" [formGroupName]="i">
+            <p>Vorname: {{ userControl.get('firstname')?.value }}</p>
+            <button type="button" (click)="addUser()">Benutzer hinzufügen</button>
+          </div>
+        </div>
       }
   </div>
   </div>

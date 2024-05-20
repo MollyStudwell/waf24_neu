@@ -49,6 +49,7 @@ Route::group(['middleware' => ['api', 'auth.jwt','auth.admin']], function () {
     Route::put('/categories/{id}', [CategoryController::class, 'update']);
 
     Route::get('/user/search/{searchTerm}', [UserController::class, 'findEmailBySearchTerm']);
+    Route::get('/user', [UserController::class, 'index']);
 
     /* auth */
     Route::post('auth/logout', [AuthController::class, 'logout']);

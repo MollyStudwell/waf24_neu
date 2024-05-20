@@ -26,6 +26,15 @@
         @if(noteDetailsOn){
           @if (note){
             <h1>{{note.title}}</h1>
+            <button class="ui tiny red labeled icon button" (click)="removeNote()">
+              <i class="remove icon"></i>Notiz löschen</button>
+            <a class="ui tiny yellow labeled icon button" [routerLink]="'../../form-note/'+ note.id">
+              <i class="edit icon"></i>Notiz bearbeiten
+            </a>
+            <br>
+            <br>
+            <br>
+            <h3>Description</h3>
             <p>{{note.description}}</p>
             <div class="ui small images">
               @for (thumbnail of note.images; track thumbnail) {
@@ -34,12 +43,13 @@
             </div>
             <br>
             <div class="ui middle aligned selection divided list">
-            <h2>Todos</h2>
+            <h3>Todos</h3>
             @for (todo of note.todos; track todo) {
               <a class="item" (click)="removeTodo(todo.id)">
                 <input type="checkbox" id="todo" name="Todo">
-                <label class="strikethrough" for="todo">{{todo.id}} | {{todo.title}}</label>
-
+                <label class="strikethrough" for="todo"> {{todo.title}}</label>
+                {{todo.description}}
+                {{todo.due_date}}
               </a>
             }
             </div>
@@ -59,17 +69,12 @@
               </div>
               <br>
             </form>
-            <h2>Categories</h2>
+            <h3>Tags</h3>
             @for (category of note.categories; track category){
               <div class="ui tag label">{{category.category}}</div>
             }
 
             <br> <br>
-            <button class="ui tiny red labeled icon button" (click)="removeNote()">
-              <i class="remove icon"></i>Notiz löschen</button>
-            <a class="ui tiny yellow labeled icon button" [routerLink]="'../../form-note/'+ note.id">
-              <i class="edit icon"></i>Notiz bearbeiten
-            </a>
           } @else {
 
           }}

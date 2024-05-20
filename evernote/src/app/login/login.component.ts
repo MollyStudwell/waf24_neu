@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "../shared/authentication.service";
+import {waitUntilServerIsListening} from "@angular-devkit/build-angular/src/builders/ssr-dev-server/utils";
+import {EvernoteService} from "../shared/evernote.service";
+import {User} from "../shared/user";
 
 interface Response {
   access_token:string;
@@ -19,11 +22,14 @@ interface Response {
 export class LoginComponent implements OnInit{
 
   loginForm: FormGroup;
+  userId: string|undefined|null=null;
+  user:User|undefined|null=undefined;
 
   constructor (
     private fb: FormBuilder,
     private router: Router,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private service: EvernoteService
   ) {
     this.loginForm = this.fb.group({});
   }
@@ -33,6 +39,13 @@ export class LoginComponent implements OnInit{
       username: ["", [Validators.required, Validators.email]],
       password: ["", [Validators.required]]
     })
+    if(this.isLoggedIn()){
+      this.userId = sessionStorage.getItem('userId');
+      this.service.getUser()
+        .subscribe((user) =>{
+          this.user = user[0];
+        })
+    }
   }
 
   login() {

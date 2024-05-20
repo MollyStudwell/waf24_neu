@@ -30,8 +30,24 @@
   </div>
 }
 @if(isLoggedIn()){
-  <div>
-    <br>
-    <button type="button" class="ui red icon button" (click)="logout()"><i class="sign-out icon"></i>Logout</button>
-  </div>
+  <div class="ui container">
+    <div class="ui card centered">
+      <div class="image">
+        <img src="{{user?.picture}}">
+      </div>
+      <div class="content">
+        <a class="header">{{user?.firstname}} {{user?.lastname}}</a>
+      </div>
+      <div class="extra content">
+        <a>
+          <i class="envelope icon"></i>
+          {{user?.email}}
+        </a>
+      </div>
+      <div class="extra content">
+        <button type="button" class="ui button" (click)="logout()">Logout</button>
+      </div>
+    </div>
+    </div>
 }
+

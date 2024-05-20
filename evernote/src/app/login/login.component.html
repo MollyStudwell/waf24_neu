@@ -30,8 +30,9 @@
   </div>
 }
 @if(isLoggedIn()){
+  <br>
   <div class="ui container">
-    <div class="ui card centered">
+    <div class="ui blue segment card centered">
       <div class="image">
         <img src="{{user?.picture}}">
       </div>
@@ -40,7 +41,6 @@
       </div>
       <div class="extra content">
         <a>
-          <i class="envelope icon"></i>
           {{user?.email}}
         </a>
       </div>

@@ -21,3 +21,4 @@ Route::get('/', [\App\Http\Controllers\NotelistController::class,"index"]);
 Route::get('notes', [\App\Http\Controllers\NoteController::class,"index"]);
 Route::get('todos', [\App\Http\Controllers\TodoController::class,"index"]);
 Route::get('categories', [\App\Http\Controllers\CategoryController::class,"index"]);
+Route::get('user', [\App\Http\Controllers\UserController::class,"index"]);

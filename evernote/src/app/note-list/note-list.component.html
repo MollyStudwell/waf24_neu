@@ -12,7 +12,7 @@
         <div class="ui middle aligned selection divided list">
           @for (note of notelist.notes; track note) {
             <a class="item" (click)="showNoteDetails(note)">
-              {{note.id}} | {{note.title}}
+              {{note.title}}
             </a>
 
           }

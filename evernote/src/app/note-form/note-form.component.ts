@@ -130,6 +130,9 @@ export class NoteFormComponent implements OnInit{
   }
 
   submitNoteForm(){
+    if(this.noteForm.value.categories[0].category == null) {
+      this.noteForm.value.categories = [];
+    }
     this.noteForm.value.images = this.noteForm.value.images.filter(
       (thumbnail: {url:string}) => thumbnail.url
   );

@@ -3,4 +3,25 @@ input[type=checkbox]:checked + label.strikethrough{
   text-decoration: line-through;
 }
 
+.square {
+  height: 50px;
+  width: 50px;
+  background-color: #555;
+}
+
+.input-container {
+  position: relative;
+}
+
+#myInput{
+  padding-right: 40px;
+}
+
+#myButton{
+  position: absolute;
+  right: -4px;
+  top:1px;
+}
+
+
 

@@ -4,13 +4,16 @@ import {TodoFactory} from "../shared/todo-factory";
 import {ActivatedRoute, Router} from "@angular/router";
 import {EvernoteService} from "../shared/evernote.service";
 import {TodoList} from "../shared/todo-list";
+import {User} from "../shared/user";
+import {ShareToUserComponent} from "../share-to-user/share-to-user.component";
 
 @Component({
   selector: 'bs-todo-form',
   standalone: true,
   imports: [
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ShareToUserComponent
   ],
   templateUrl: './todo-form.component.html',
   styles: ``
@@ -52,5 +55,10 @@ export class TodoFormComponent implements OnInit {
       this.todoForm.reset(TodoFactory.empty());
       this.router.navigate(['../todos'],{relativeTo:this.route});
     });
+  }
+
+  selected(user: User) {
+    console.log('selecteduser',user);
+
   }
 }

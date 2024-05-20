@@ -1,7 +1,7 @@
 <br>
 @if(notelist){
   <div class="ui segment">
-    <div class="ui two column very relaxed grid">
+    <div class="ui three column very relaxed grid">
       <div class="column">
         <h1>{{notelist.name}}</h1>
         <button class="ui tiny red labeled icon button" (click)="removeNotelist()">
@@ -34,30 +34,28 @@
             </div>
             <br>
             <div class="ui middle aligned selection divided list">
-            <h2>Todos</h2>
-            @for (todo of note.todos; track todo) {
-              <a class="item" (click)="removeTodo(todo.id)">
-                <input type="checkbox" id="todo" name="Todo">
-                <label class="strikethrough" for="todo">{{todo.id}} | {{todo.title}}</label>
+              @for (todo of note.todos; track todo) {
+                <a class="item" (click)="showTodoDetails(todo)">
+                  {{todo.id}} | {{todo.title}}
+                </a>
 
-              </a>
-            }
+              }
+              <button [routerLink]="'/form-note'" [state]="{notelist:notelist.id}" class="ui tiny green labeled icon button" >
+                <i class="add icon"></i>Notiz hinzufügen</button>
             </div>
 
             <form class="ui medium form" [formGroup]="todoForm" (ngSubmit)="submitTodoForm()">
               <div class="column">
                 <div class="field">
-                  <label for="myInput"></label>
-                  <div class="input-container">
-                  <input type="text" id="myInput" formControlName="title" placeholder="Todo-Name eingeben">
-                    <button id="myButton" type="submit" class="ui red icon button" [disabled]="todoForm.invalid"><i class="white arrow circle right icon"></i></button>
-                </div>
+                  <label for="title"></label>
+                  <input type="text" id="title" formControlName="title" placeholder="Todo-Name eingeben">
                   @if(errors['title']){
                     <div class="ui negative message"> {{ errors['title'] }}</div>
                   }
                 </div>
               </div>
               <br>
+              <button type="submit" class="ui red button" [disabled]="todoForm.invalid">Todo erstellen</button>
             </form>
             <h2>Categories</h2>
             @for (category of note.categories; track category){

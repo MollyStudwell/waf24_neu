@@ -41,6 +41,7 @@ Route::group(['middleware' => ['api', 'auth.jwt','auth.admin']], function () {
     Route::get('/todos/{id}', [TodoController::class, 'findByID']);
     Route::post('/todos', [TodoController::class, 'save']);
     Route::put('/todos/{id}', [TodoController::class, 'update']);
+    Route::delete('/todos/{id}', [TodoController::class, 'delete']);
 
     Route::get('/categories', [CategoryController::class, 'index']);
     Route::get('/categories/{id}', [CategoryController::class, 'findByID']);

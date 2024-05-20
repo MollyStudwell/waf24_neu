@@ -22,9 +22,23 @@ import {Note} from "../shared/note";
 export class TodolistListComponent implements OnInit{
   todos: TodoList[] = [];
 
-  constructor( private service: EvernoteService) {
+  constructor( private service: EvernoteService,
+               private toastr:ToastrService) {
   }
   ngOnInit(): void {
     this.service.getAllTodos().subscribe(res=>this.todos = res);
+  }
+
+  removeTodoInList(id: number){
+    if(id) {
+      if(confirm("Todo wirklich löschen?")) {
+        this.service.removeTodoInList(id).subscribe(
+          () => {
+            this.ngOnInit();
+            this.toastr.success('Todo gelöscht!', "Evernote");
+          }
+        );
+      }
+    }
   }
 }

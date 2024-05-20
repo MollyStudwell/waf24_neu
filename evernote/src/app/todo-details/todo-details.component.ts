@@ -10,16 +10,16 @@ import {TodoList} from "../shared/todo-list";
 import {TodoFactory} from "../shared/todo-factory";
 
 @Component({
-  selector: 'bs-note-list',
+  selector: 'bs-todo-details',
   standalone: true,
   imports: [
     RouterLink,
     ReactiveFormsModule
   ],
-  templateUrl: './note-list.component.html',
+  templateUrl: './todo-details.component.html',
   styles: ``
 })
-export class NoteListComponent implements OnInit {
+export class TodoDetailsComponent implements OnInit {
   notelist: Notelist = NotelistFactory.empty();
   noteDetailsOn: boolean = false;
   note: Note | undefined;
@@ -111,16 +111,10 @@ submitTodoForm() {
     this.showNoteDetails((this.note))
 }
 
-  removeTodo(id: number){
-    if(id) {
-      if(confirm("Todo wirklich löschen?")) {
-        this.evernoteService.removeTodo(id).subscribe(
-          () => {
-            this.ngOnInit();
-            this.toastr.success('Todo gelöscht!', "Evernote");
-          }
-        );
-      }
-    }
+  showTodoDetails(todo: TodoList) {
+    this.todoDetailsOn = true;
+    this.evernoteService.getSingleTodo((todo.id).toString())
+      .subscribe((todo:TodoList)=>this.todo = todo);
   }
+
 }

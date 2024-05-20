@@ -22,16 +22,22 @@
       @if(errors['due_date']){
         <div class="ui negative message">{{ errors['due_date'] }} </div>
       }
-    </div>
-    <!--TODO:visibility-->
-    <div class="ui toggle checkbox">
-      <input type="checkbox" name="public" formControlName="visibility" id="visibility">
-      <label class="dn" for="visibility" data-content="OFF">{{
-          todoForm.get('visibility')?.value ?
-            'öffentlich' : 'privat'
-        }}</label>
-    </div>
+      <div class="ui segment">
+        <div class="ui two column very relaxed grid">
+          <div class="column">
+            <div class="ui toggle checkbox">
+              <input type="checkbox" name="public" formControlName="visibility" id="visibility">
+              <label class="dn" for="visibility" data-content="OFF">{{ todoForm.get('visibility')?.value ?
+                'öffentlich' : 'privat' }}</label>
+            </div>
+          </div>
+          @if(todoForm.get('visibility')?.value){
+            <bs-share-to-user (selected)="selected($event)"></bs-share-to-user>
+          }
+        </div>
+      </div>
 
   </div>
   <button type="submit" class="ui red button" [disabled]="todoForm.invalid">Todo erstellen</button>
+  </div>
 </form>

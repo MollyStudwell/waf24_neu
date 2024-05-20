@@ -88,4 +88,15 @@ export class EvernoteService {
       .pipe(retry(3)).pipe(catchError(this.errorHandler))
   }
 
+  removeTodo(id: number):Observable<any> {
+    return this.http.delete<TodoList>(`${this.api}/todos/${id}`)
+      .pipe(retry(3)).pipe(catchError(this.errorHandler))
+
+  }
+
+  removeTodoInList(id: number):Observable<any> {
+    return this.http.delete<TodoList>(`${this.api}/todos/${id}`)
+      .pipe(retry(3)).pipe(catchError(this.errorHandler))
+
+  }
 }

@@ -40,4 +40,15 @@ class TodoController extends Controller
             return response()->json("saving todo failed ".$e->getMessage(), 420);
         }
     }
+
+    public function delete(string $id):JsonResponse{
+        $todo = Todo::where('id',$id)->first();
+        if($todo!=null){
+            $todo->delete();
+            return response()->json('todo ('.$id.') successfully deleted', 200);
+        }else{
+            return response()->json("could not delete note - it does not exist",422);
+        }
+
+    }
 }

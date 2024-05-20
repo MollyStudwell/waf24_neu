@@ -1,0 +1,13 @@
+@if(isLoggedIn()){
+<div class="ui {{isLoggedIn()?'four':'three'}} top attached tabular menu">
+  <a routerLink="notelists" routerLinkActive="active" class="ui icon item"><i class="book icon"></i>Notizbücher</a>
+  <a routerLink="todos" routerLinkActive="active" class="item">Todos</a>
+  <a routerLink="login" routerLinkActive="active" class="ui icon item"><i class="sign-out icon"></i>{{getLoginLabel()}}</a>
+</div>
+}
+
+<div class="ui container">
+  <router-outlet></router-outlet>
+</div>
+
+

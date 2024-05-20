@@ -1,0 +1,10 @@
+<br>
+<h1>Notizbücher</h1>
+<div class="ui middle aligned selection divided list">
+  @for (notelist of notelists; track notelist) {
+    <a class="item" [routerLink]="notelist.id.toString()">
+      {{notelist.name}}
+    </a>
+  }<button [routerLink]="'/form-notelist'" class="ui green button">Notizbuch hinzufügen</button>
+</div>
+

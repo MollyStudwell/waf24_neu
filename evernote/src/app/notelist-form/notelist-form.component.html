@@ -1,0 +1,32 @@
+<br>
+<div class="ui green segment">
+<h1>Notizbuch Formular</h1>
+
+<form class="ui large form" [formGroup]="notelistForm" (ngSubmit)="submitNotelistForm()">
+
+  <div class="column">
+    <div class="field">
+      <label for="name">Name</label>
+      <input type="text" id="name" formControlName="name">
+      @if(errors['name']){
+        <div class="ui negative message"> {{ errors['name'] }}</div>
+      }
+    </div>
+  </div>
+  <div class="ui segment">
+    <div class="ui two column very relaxed grid">
+      <div class="column">
+        <div class="ui toggle checkbox">
+          <input type="checkbox" name="public" formControlName="visibility" id="visibility">
+          <label class="dn" for="visibility" data-content="OFF">{{ notelistForm.get('visibility')?.value ?
+            'öffentlich' : 'privat' }}</label>
+          </div>
+      </div>
+      @if(notelistForm.get('visibility')?.value){
+        <bs-share-to-user (selected)="selected($event)"></bs-share-to-user>
+      }
+  </div>
+  </div>
+    <button type="submit" class="ui green button" [disabled]="notelistForm.invalid">Speichern</button>
+</form>
+</div>

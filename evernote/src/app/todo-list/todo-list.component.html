@@ -1,0 +1,11 @@
+<h1>Todos</h1>
+<div class="ui middle aligned selection divided list">
+  @for (todo of todos; track todo) {
+    <input type="checkbox" id="todo_{{todo.id}}" name="todo" [checked]="todo.completed">
+    <label class="strikethrough" for="todo_{{todo.id}}">{{todo.title}}</label><br>
+  }
+  <a class="ui tiny yellow labeled icon button" [routerLink]="'../form-todo/'">
+    <i class="edit icon"></i>Todo erstellen
+  </a>
+</div>
+

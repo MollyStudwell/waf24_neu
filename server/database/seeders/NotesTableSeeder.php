@@ -17,7 +17,7 @@ class NotesTableSeeder extends Seeder
     {
         $note1 = new Note();
         $note1->title ='Einkaufen';
-        $note1->description = 'Suppengewürz, Plastikbeutel';
+        $note1->description = 'Äpfel, Birnen';
         $notelist1 = Notelist::find(2);
         $note1->notelist()->associate($notelist1);
         $note1->save();
@@ -38,8 +38,8 @@ class NotesTableSeeder extends Seeder
         $note2->save();
 
         $note3 = new Note();
-        $note3->title ='Abholen';
-        $note3->description = 'Do: Max vom Kindergarten abholen, 12 Uhr';
+        $note3->title ='Christian abholen';
+        $note3->description = 'Christian vom KH abholen , 12:00';
         $notelist3 = Notelist::all()->first();
         $note3->notelist()->associate($notelist3);
         $note3->save();
